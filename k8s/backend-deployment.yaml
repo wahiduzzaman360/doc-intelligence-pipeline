@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: doc-backend
+  template:
+    metadata:
+      labels:
+        app: doc-backend
+    spec:
+      containers:
+      - name: backend
+        image: doc-backend:latest
+        imagePullPolicy: Never
+        env:
+        - name: MINIO_ENDPOINT
+          value: "http://minio-service:9000"
+        - name: MINIO_ACCESS_KEY
+          value: "minioadmin"
+        - name: MINIO_SECRET_KEY
+          value: "minioadmin"
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8000
+    targetPort: 8000
+  selector:
+    app: doc-backend
