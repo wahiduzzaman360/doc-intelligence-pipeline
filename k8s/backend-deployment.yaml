@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: doc-backend:latest
+        image: doc-intelligence-backend:latest
         imagePullPolicy: Never
         env:
         - name: MINIO_ENDPOINT
