@@ -20,5 +20,11 @@ pipeline {
                 sh 'docker build -t doc-intelligence-frontend:latest ./frontend'
             }
         }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'kubectl apply -f k8s/'
+            }
+        }
     }
 }
