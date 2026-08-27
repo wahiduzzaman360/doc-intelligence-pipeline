@@ -1,8 +1,9 @@
 import streamlit as st
 import requests
 
-st.title("📄 Document Intelligence Platform")
-st.write("Pure Python Frontend + FastAPI + MinIO S3 + K8s")
+st.title("Document Intelligence Platform")
+st.success("CI/CD TEST: Deployed by Jenkins to Kubernetes")
+
 
 uploaded_file = st.file_uploader("Choose a document", type=["pdf", "png", "jpg", "txt"])
 
